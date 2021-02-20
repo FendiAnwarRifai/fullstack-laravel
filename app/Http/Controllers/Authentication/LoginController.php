@@ -41,8 +41,8 @@ class LoginController extends Controller
         $data = Admins::where('email','=' ,$request->email)->first();
         if(Hash::check($request->password, $data->password ) )
         {
-            // return redirect('dashboard');
-            return response ()->json($data);
+            return redirect('main');
+            // return response ()->json($data);
         } else {
             return response ()->json('password wrong');
         }

@@ -47,8 +47,8 @@ class RegisterController extends Controller
         $user->email = $request->email;
         $user->password = $pw;
         $user->save();
-        // return redirect('/');
-        return response ()->json($user);
+        return redirect('/');
+        // return response ()->json($user);
     }
 
     /**
