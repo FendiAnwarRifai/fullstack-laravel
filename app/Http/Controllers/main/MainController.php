@@ -81,9 +81,22 @@ class MainController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+          'name' => 'required',
+          'price' => 'required',
+          'stock' => 'required',
+      ]);
+        $vehicle = Vehicle::find($request->id);
+        $vehicle->name = $request->name;
+        $vehicle->price = $request->price;
+        $vehicle->stock = $request->stock;
+        $vehicle->save();
+
+        $data = Vehicle::where('id','=' ,$request->id)->first();
+        return redirect()->back();
+        // return response ()->json($data);
     }
 
     /**

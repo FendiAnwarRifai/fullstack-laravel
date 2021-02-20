@@ -11,7 +11,7 @@
 		<a href="">input penjualan</a>
 	</div>
 
-	<!-- Modal -->
+	<!-- Modal create -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -46,6 +46,43 @@
 		</div>
 	</div>
 
+
+	<!-- Modal edit -->
+	<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add Vehicle</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<form autocomplete="off" method="post" action="UpdateVehicle">
+					@csrf
+					<div class="modal-body">
+						<div class="mb-3">
+							<input type="hidden" name="id" id="ids">
+							<label for="names" class="form-label">Name </label>
+							<input type="text" name="name" class="form-control" id="names">
+						</div>
+						<div class="mb-3">
+							<label for="prices" class="form-label">Price</label>
+							<input type="number" name="price" class="form-control" id="prices" >
+						</div>
+						<div class="mb-3">
+							<label for="stocks" class="form-label">Stock</label>
+							<input type="number" class="form-control" id="stocks" name="stock">
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<table id="example" class="table table-striped table-bordered" style="width:100%">
 		<thead>
 			<tr>
@@ -59,10 +96,10 @@
 			@foreach($vehicle as $data)
 			<tr>
 				<td>{{ $data->name }}</td>
-				<td>12.000.000.000</td>
-				<td>13</td>
+				<td>{{ $data->price }}</td>
+				<td>{{ $data->stock }}</td>
 				<td>
-					<button>edit</button>
+					<button class="edit-data" type="button"  data-bs-toggle="modal" data-bs-target="#edit" data-id="{{ $data->id }}" data-name="{{ $data->name }}" data-price="{{ $data->price }}" data-stock="{{ $data->stock }}">edit</button>
 					<form method="POST" action="destroyVehicle/{{$data->id}}">
 						@csrf
 						<button type="submit">Delete</button>
@@ -74,4 +111,5 @@
 		</tbody>
 	</table>
 </div>
+
 @endsection

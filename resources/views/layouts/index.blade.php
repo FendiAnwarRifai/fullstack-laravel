@@ -26,6 +26,13 @@
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
+
+			$('.edit-data').click(function() {
+			$('#ids').val($(this).data('id'));
+			$('#names').val($(this).data('name'));
+			$('#prices').val($(this).data('price'));
+			$('#stocks').val($(this).data('stock'));
+		})
 		} );
 	</script>
 </body>

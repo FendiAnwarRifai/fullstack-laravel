@@ -20,6 +20,7 @@ Route::post('submitRegister', 'Authentication\RegisterController@store');
 
 Route::get('main', 'main\MainController@index');
 Route::post('addVehicle', 'main\MainController@store');
+Route::post('UpdateVehicle', 'main\MainController@update');
 Route::post('destroyVehicle/{id}', 'main\MainController@destroy');
 
 
